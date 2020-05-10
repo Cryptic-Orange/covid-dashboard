@@ -60,8 +60,20 @@ section.daily-cases{
 .sidebar{
     background: #202442;
     grid-area: sidebar;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 1.5rem 0;
 }
 
+.sidebar__footer img{
+    width:32px;
+    margin:0.5rem;
+}
+
+.sidebar__header img{
+    width: 40%;
+}
 
 footer{
     grid-area: footer;
