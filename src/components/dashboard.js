@@ -10,38 +10,31 @@ class Dashboard extends Component {
     this.state = {};
   }
 
+  //"https://c19downloads.azureedge.net/downloads/json/coronavirus-cases_latest.json"
   componentDidMount() {
-    fetch(
-      //"https://c19downloads.azureedge.net/downloads/json/coronavirus-cases_latest.json"
-      "/data/coronavirus-cases_latest.json"
-    ).then((response) => {
-      response.json().then((value) => {
-        this.setState({ data: value });
-      });
-    });
-
-    fetch(
-      //"https://c19downloads.azureedge.net/downloads/json/coronavirus-cases_latest.json"
-      "/data/coronavirus-deaths_latest.json"
-    ).then((response) => {
-      response.json().then((value) => {
-        this.setState({ deathsData: value });        
+    Promise.all([
+      fetch("/data/coronavirus-cases_latest.json"),
+      fetch("/data/coronavirus-deaths_latest.json"),
+    ]).then((responses) => {
+      Promise.all([responses[0].json(), responses[1].json()]).then((values) => {
+        this.setState({ data: values[0] });
+        this.setState({ deathsData: values[1] });
+        this.setState({ loaded: true });
       });
     });
   }
 
   render() {
-    if (!this.state.data)
+    if (!this.state.loaded)
       return (
         <div>
           <p> No Data! </p>
         </div>
       );
 
-
     return (
-      <div class="dashboard">  
-        <Sidebar></Sidebar>            
+      <div class="dashboard">
+        <Sidebar></Sidebar>
 
         <section className="daily-cases">
           <DailyCases data={this.state.data}></DailyCases>
@@ -50,10 +43,18 @@ class Dashboard extends Component {
           <CaseHistoryTable rows={this.state.data.countries}></CaseHistoryTable>
         </section>
         <section className="case-history">
-          <CaseHistoryChart rows={this.state.data.countries} deaths={this.state.deathsData.countries}></CaseHistoryChart> 
+          <CaseHistoryChart
+            rows={this.state.data.countries}
+            deaths={this.state.deathsData.countries}
+          ></CaseHistoryChart>
         </section>
         <footer>
-          <span>Last updated: {new Date(this.state.data.metadata.lastUpdatedAt).toLocaleDateString()}</span>
+          <span>
+            Last updated:{" "}
+            {new Date(
+              this.state.data.metadata.lastUpdatedAt
+            ).toLocaleDateString()}
+          </span>
         </footer>
       </div>
     );
