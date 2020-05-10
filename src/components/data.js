@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import DailyCases from "./daily-cases";
 import CaseHistoryTable from "./case-history.table";
+import CaseHistoryChart from "./case-history.chart";
 
 class Data extends Component {
   constructor(props) {
@@ -15,6 +16,16 @@ class Data extends Component {
     ).then((response) => {
       response.json().then((value) => {
         this.setState({ data: value });
+        console.log(this.state.data);
+      });
+    });
+
+    fetch(
+      //"https://c19downloads.azureedge.net/downloads/json/coronavirus-cases_latest.json"
+      "/data/coronavirus-deaths_latest.json"
+    ).then((response) => {
+      response.json().then((value) => {
+        this.setState({ deathsData: value });
         console.log(this.state.data);
       });
     });
@@ -37,6 +48,7 @@ class Data extends Component {
         </section>
         <section className="case-history">
           <CaseHistoryTable rows={this.state.data.countries}></CaseHistoryTable>
+          <CaseHistoryChart rows={this.state.data.countries} deaths={this.state.deathsData.countries}></CaseHistoryChart> 
         </section>
       </React.Fragment>
     );

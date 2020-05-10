@@ -17,7 +17,7 @@ totalLabConfirmedCases: 134975
 class CaseHistoryTable extends Component {
     state = {  }
 
-    renderRows = (rows) => rows.map(row => <tr><td>{ row.specimenDate }</td><td>{row.totalLabConfirmedCases}</td></tr>);
+    renderRows = (rows) => rows.map(row => <tr key={row.specimenDate}><td>{ row.specimenDate }</td><td>{row.totalLabConfirmedCases}</td></tr>);
 
     render() { 
         return ( <table>
