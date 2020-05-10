@@ -3,6 +3,7 @@ import DailyCases from "./daily-cases";
 import CaseHistoryTable from "./case-history.table";
 import CaseHistoryChart from "./case-history.chart";
 import Sidebar from "./sidebar";
+import Footer from "./footer";
 
 class Dashboard extends Component {
   constructor(props) {
@@ -48,14 +49,7 @@ class Dashboard extends Component {
             deaths={this.state.deathsData.countries}
           ></CaseHistoryChart>
         </section>
-        <footer>
-          <span>
-            Last updated:{" "}
-            {new Date(
-              this.state.data.metadata.lastUpdatedAt
-            ).toLocaleDateString()}
-          </span>
-        </footer>
+        <Footer data={this.state.data}></Footer>  
       </div>
     );
   }
