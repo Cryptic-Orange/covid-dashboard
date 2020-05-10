@@ -13,7 +13,7 @@ class Sidebar extends Component {
                 <a href="https://github.com/Cryptic-Orange/covid-dashboard" target="_blank">
                     <img src="/images/github.svg"></img>
                 </a>
-                <a href="https//linkedin.com">
+                <a href="https://linkedin.com">
                     <img src="/images/linkedin.svg"></img>
                 </a>
             </div>

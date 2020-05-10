@@ -1,27 +1,22 @@
 import React, { Component } from "react";
 
 class DailyCases extends Component {
- 
   render() {
-  
     return (
-      <div>
-        <table>
-          <tbody>
-            <tr>
-              <th>Area</th>
-              <td>{this.props.data.dailyRecords.areaName}</td>
-            </tr>
-            <tr>
-              <th>Daily Lab Confirmed Cases</th>
-              <td>{this.props.data.dailyRecords.dailyLabConfirmedCases}</td>
-            </tr>
-            <tr>
-              <th>Total Lab Confirmed Cases</th>
-              <td>{this.props.data.dailyRecords.totalLabConfirmedCases}</td>
-            </tr>
-          </tbody>
-        </table>
+      <div class="data-points">
+        <div class="data-point">
+          <h2>New Cases</h2>
+          <div className="data-point__value">
+            {this.props.data.dailyRecords.dailyLabConfirmedCases}
+          </div>
+        </div>
+
+        <div class="data-point">
+          <h2>Total Cases</h2>
+          <div class="data-point__value">
+            {this.props.data.dailyRecords.totalLabConfirmedCases}
+          </div>
+        </div>
       </div>
     );
   }

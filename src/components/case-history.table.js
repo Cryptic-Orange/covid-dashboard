@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component } from "react";
 
 /*
 areaCode: "E92000001"
@@ -13,31 +13,36 @@ specimenDate: "2020-05-08"
 totalLabConfirmedCases: 134975
 */
 
-
 class CaseHistoryTable extends Component {
-    state = {  }
+  state = {};
 
-    renderRows = (rows) => rows.map(row => <tr key={row.specimenDate}><td>{ row.specimenDate }</td><td>{row.totalLabConfirmedCases}</td></tr>);
+  renderRows = (rows) =>
+    rows.map((row) => (
+      <tr key={row.specimenDate}>
+        <td>{row.specimenDate}</td>
+        <td>{row.previouslyReportedTotalCases}</td>
+        <td>{row.totalLabConfirmedCases}</td>
+        <td>{row.changeInTotalCases}</td>
+      </tr>
+    ));
 
-    render() { 
-        
-        return ( 
-            <div>
-
+  render() {
+    return (
+      <div>
         <table>
-            <thead>
-                <tr>
-                    <th>Date</th>    
-                    <th>Cases</th>
-                </tr>                
-            </thead>
-            <tbody>
-               { this.renderRows(this.props.rows) }
-            </tbody>
-        </table> 
-            </div>
-        );
-    }
+          <thead>
+            <tr>
+              <th>Date</th>
+              <th>Previously Reported</th>
+              <th>Total</th>
+              <th>Change</th>
+            </tr>
+          </thead>
+          <tbody>{this.renderRows(this.props.rows)}</tbody>
+        </table>
+      </div>
+    );
+  }
 }
- 
+
 export default CaseHistoryTable;

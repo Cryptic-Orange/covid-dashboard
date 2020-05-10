@@ -52,9 +52,45 @@ section.daily-cases{
     grid-row: header-start / header-end;
 }
 
+.data-points{
+ display: flex;
+ justify-content: space-around;
+ align-items: center;
+}
+
+.data-point h2{
+    font-size: 1rem;
+    font-weight: 100;
+    margin-top: 0;
+}
+
+.data-point__value{
+    font-size: 2rem;
+}
+
 .tabular-history > div{
     overflow-y: scroll;
     height:100%;
+}
+
+.tabular-history table{
+    width: 100%;
+    
+}
+
+.tabular-history table tr{
+  
+    height:2rem;
+}
+
+.tabular-history table tr:nth-child(2n){
+    background-color: #4d5274;
+    
+}
+
+.tabular-history table td{
+  border-spacing: 0;
+   border:none;
 }
 
 .sidebar{
