@@ -16,7 +16,6 @@ class Data extends Component {
     ).then((response) => {
       response.json().then((value) => {
         this.setState({ data: value });
-        console.log(this.state.data);
       });
     });
 
@@ -25,8 +24,7 @@ class Data extends Component {
       "/data/coronavirus-deaths_latest.json"
     ).then((response) => {
       response.json().then((value) => {
-        this.setState({ deathsData: value });
-        console.log(this.state.data);
+        this.setState({ deathsData: value });        
       });
     });
   }
