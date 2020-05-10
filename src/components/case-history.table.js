@@ -20,7 +20,11 @@ class CaseHistoryTable extends Component {
     renderRows = (rows) => rows.map(row => <tr key={row.specimenDate}><td>{ row.specimenDate }</td><td>{row.totalLabConfirmedCases}</td></tr>);
 
     render() { 
-        return ( <table>
+        
+        return ( 
+            <div>
+
+        <table>
             <thead>
                 <tr>
                     <th>Date</th>    
@@ -30,7 +34,9 @@ class CaseHistoryTable extends Component {
             <tbody>
                { this.renderRows(this.props.rows) }
             </tbody>
-        </table> );
+        </table> 
+            </div>
+        );
     }
 }
  

@@ -2,8 +2,9 @@ import React, { Component } from "react";
 import DailyCases from "./daily-cases";
 import CaseHistoryTable from "./case-history.table";
 import CaseHistoryChart from "./case-history.chart";
+import Sidebar from "./sidebar";
 
-class Data extends Component {
+class Dashboard extends Component {
   constructor(props) {
     super(props);
     this.state = {};
@@ -39,18 +40,24 @@ class Data extends Component {
 
 
     return (
-      <React.Fragment>
-        <h1>Last updated: {new Date(this.state.data.metadata.lastUpdatedAt).toLocaleDateString()}</h1>
+      <div class="dashboard">  
+        <Sidebar></Sidebar>            
+
         <section className="daily-cases">
           <DailyCases data={this.state.data}></DailyCases>
         </section>
-        <section className="case-history">
+        <section className="tabular-history">
           <CaseHistoryTable rows={this.state.data.countries}></CaseHistoryTable>
+        </section>
+        <section className="case-history">
           <CaseHistoryChart rows={this.state.data.countries} deaths={this.state.deathsData.countries}></CaseHistoryChart> 
         </section>
-      </React.Fragment>
+        <footer>
+          <span>Last updated: {new Date(this.state.data.metadata.lastUpdatedAt).toLocaleDateString()}</span>
+        </footer>
+      </div>
     );
   }
 }
 
-export default Data;
+export default Dashboard;
