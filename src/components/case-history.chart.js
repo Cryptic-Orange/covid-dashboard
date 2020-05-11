@@ -21,13 +21,12 @@ class CaseHistoryChart extends Component {
   };
 
   getChartData = () => {
-    let rows = this.props.rows.reverse();
+    let rows = this.props.rows;
 
     if (!this.props.deaths) return;
 
     let deaths = this.props.deaths
-      .filter((x) => x.areaName === "England")
-      .reverse();
+      .filter((x) => x.areaName === "England");      
 
     let labels = this.getLabels(rows);
 

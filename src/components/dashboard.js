@@ -19,6 +19,9 @@ class Dashboard extends Component {
       fetch("/data/coronavirus-deaths_latest.json"),
     ]).then((responses) => {
       Promise.all([responses[0].json(), responses[1].json()]).then((values) => {
+        values[0].countries.reverse();
+        values[1].countries.reverse();
+
         this.setState({ data: values[0] });
         this.setState({ deathsData: values[1] });
         this.setState({ loaded: true });
