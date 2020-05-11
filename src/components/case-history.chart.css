@@ -1,0 +1,8 @@
+.widget.chart > div{
+    display: flex;
+    flex-direction: column;
+}
+
+.widget .chart-wrapper {
+    flex-grow: 1;
+}

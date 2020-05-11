@@ -5,9 +5,10 @@
   background-color: #25294a;
 
   grid-template-columns: [sidebar-start] 15% [sidebar-end c1-start] 1fr [c1-end c2-start] 1fr [c2-end];
-  grid-template-rows: [header-start] 0.5fr [header-end r1-start] 0.5fr [r1-end r2-start] 1fr [r2-end footer-start] 3rem [footer-end];
+  grid-template-rows: [header-start] 1fr [header-end r1-start] 1fr [r1-end r2-start] 1fr [r2-end r2-start] 1fr [r3-end footer-start] 3rem [footer-end];
 
   grid-template-areas:
+    "sidebar body body"
     "sidebar body body"
     "sidebar body body"
     "sidebar body body"
@@ -20,7 +21,6 @@
 
 .dashboard section > * {
   height: 100%;
-
   padding: 0.5rem;
   background-color: #2d325a;
   box-shadow: 0 0 10px 5px rgba(0, 0, 0, 0.2);
@@ -28,12 +28,7 @@
 
 section.tabular-history {
   grid-column: c1-start / c1-end;
-  grid-row: r1-start / r2-end;
-}
-
-section.case-history {
-  grid-column: c2-start / c2-end;
-  grid-row: header-start / r1-end;
+  grid-row: r1-start / footer-start;
 }
 
 section.daily-cases {
@@ -41,9 +36,14 @@ section.daily-cases {
   grid-row: header-start / header-end;
 }
 
+section.case-history {
+    grid-column: c2-start / c2-end;
+    grid-row: header-start / r1-end;
+  }
+
 section.daily-rate{
     grid-column: c2-start / c2-end;
-    grid-row: r2-start / r2-end;
+    grid-row: r2-start / footer-start;
 }
 
 .widget h2 {

@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Line, Bar } from "react-chartjs-2";
+import "./case-history.chart.css";
 
 class CaseHistoryChart extends Component {
   state = {};
@@ -25,8 +26,7 @@ class CaseHistoryChart extends Component {
 
     if (!this.props.deaths) return;
 
-    let deaths = this.props.deaths
-      .filter((x) => x.areaName === "England");      
+    let deaths = this.props.deaths.filter((x) => x.areaName === "England");
 
     let labels = this.getLabels(rows);
 
@@ -63,6 +63,7 @@ class CaseHistoryChart extends Component {
   };
 
   defaultLineOptions = {
+    maintainAspectRatio: false,
     scales: {
       yAxes: [
         {
@@ -99,6 +100,7 @@ class CaseHistoryChart extends Component {
   };
 
   defaultBarOptions = {
+    maintainAspectRatio: false,
     scales: {
       yAxes: [
         {
@@ -134,10 +136,12 @@ class CaseHistoryChart extends Component {
     }
 
     return (
-      <section className={`widget ${this.props.className}`}>
+      <section className={`widget chart ${this.props.className}`}>
         <div>
-          <h2>{this.props.title}</h2>
-          <Chart data={this.getChartData()} options={options}></Chart>
+          <h2 onClick={this.toggleChart}>{this.props.title}</h2>
+          <div className="chart-wrapper">
+            <Chart data={this.getChartData()} options={options}></Chart>
+          </div>
         </div>
       </section>
     );
