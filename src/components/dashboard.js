@@ -35,13 +35,30 @@ class Dashboard extends Component {
       );
 
     return (
-      <div class="dashboard">
+      <div className="dashboard">
         <Sidebar></Sidebar>
         <DailyCases data={this.state.data}></DailyCases>
         <CaseHistoryTable rows={this.state.data.countries}></CaseHistoryTable>
         <CaseHistoryChart
           rows={this.state.data.countries}
           deaths={this.state.deathsData.countries}
+          className={"case-history"}
+          title="Total Cases/Deaths by Date"
+          datasetOptions={{
+            labels: ["Total Cases", "Total Deaths" ],
+            fields: ["totalLabConfirmedCases", "cumulativeDeaths"]
+          }}
+        ></CaseHistoryChart>
+        <CaseHistoryChart
+          rows={this.state.data.countries}
+          deaths={this.state.deathsData.countries}
+          className={"daily-rate"}
+          title="Daily Cases/Deaths by Date"
+          chartType="bar"
+          datasetOptions={{
+            labels: ["Cases", "Deaths" ],
+            fields: ["dailyLabConfirmedCases", "dailyChangeInDeaths"]
+          }}
         ></CaseHistoryChart>
         <Footer data={this.state.data}></Footer>
       </div>

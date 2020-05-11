@@ -1,11 +1,12 @@
 import React, { Component } from "react";
-import { Line } from "react-chartjs-2";
+import { Line, Bar } from "react-chartjs-2";
 
 class CaseHistoryChart extends Component {
   state = {};
 
   getLabels = (rows) => rows.map((row) => row.specimenDate);
-  getValues = (rows) => rows.map((row) => row.totalLabConfirmedCases);
+  getValues = (rows) =>
+    rows.map((row) => row[this.props.datasetOptions.fields[0]]);
 
   getDeathValues = (labels, deathRows) => {
     let earliestDeathDate = deathRows[0].reportingDate;
@@ -14,7 +15,9 @@ class CaseHistoryChart extends Component {
     let pad = new Array(index);
 
     deathRows.unshift(...pad);
-    return deathRows.map((row) => (!row ? 0 : row.cumulativeDeaths));
+    return deathRows.map((row) =>
+      !row ? 0 : row[this.props.datasetOptions.fields[1]]
+    );
   };
 
   getChartData = () => {
@@ -28,69 +31,114 @@ class CaseHistoryChart extends Component {
 
     let labels = this.getLabels(rows);
 
-    return {
+    let result = {
       labels: labels,
       datasets: [
         {
-          label: "Total Cases",
-          borderColor: "#48C9B0",
-          backgroundColor: "rgba(72, 201, 176,0.2)",
+          label: this.props.datasetOptions.labels[0],
           yAxisId: "left-axis",
           data: this.getValues(rows),
         },
         {
-          label: "Total Deaths",
-          borderColor: "#F00",
-          backgroundColor: "rgba(255,0,0,0.2)",
+          label: this.props.datasetOptions.labels[1],
           yAxisId: "right-axis",
           data: this.getDeathValues(labels, deaths),
         },
       ],
     };
+
+    switch (this.props.chartType) {
+      case "bar":
+        result.datasets[0].backgroundColor = "#48C9B0";
+        result.datasets[1].backgroundColor = "#F00";
+        break;
+      default:
+        result.datasets[0].borderColor = "#48C9B0";
+        result.datasets[0].backgroundColor = "rgba(72, 201, 176,0.2)";
+        result.datasets[1].borderColor = "#F00";
+        result.datasets[1].backgroundColor = "rgba(255,0,0,0.2)";
+        break;
+    }
+
+    return result;
+  };
+
+  defaultLineOptions = {
+    scales: {
+      yAxes: [
+        {
+          id: "left-axis",
+          type: "logarithmic",
+          position: "left",
+          scaleLabel: {
+            display: true,
+            labelString: "Cases",
+          },
+          ticks: {
+            beginAtZero: true,
+            callback: function (value, index, values) {
+              return value.toLocaleString();
+            },
+          },
+        },
+        // {
+        //   id: "right-axis",
+        //   type: "logarithmic",
+        //   position: "right",
+        //   scaleLabel: {
+        //     display: true,
+        //     labelString: "Deaths",
+        //   },
+        //   ticks: {
+        //     callback: function (value, index, values) {
+        //       return value.toLocaleString();
+        //     },
+        //   },
+        // },
+      ],
+    },
+  };
+
+  defaultBarOptions = {
+    scales: {
+      yAxes: [
+        {
+          id: "left-axis",
+          type: "linear",
+          position: "left",
+          scaleLabel: {
+            display: true,
+            labelString: "Cases",
+          },
+          ticks: {
+            callback: function (value, index, values) {
+              return value.toLocaleString();
+            },
+          },
+        },
+      ],
+    },
   };
 
   render() {
+    let Chart;
+    let options;
+
+    switch (this.props.chartType) {
+      case "bar":
+        Chart = Bar;
+        options = this.defaultBarOptions;
+        break;
+      default:
+        Chart = Line;
+        options = this.defaultLineOptions;
+    }
+
     return (
-      <section className="widget case-history">
+      <section className={`widget ${this.props.className}`}>
         <div>
-            <h2>Total Cases/Deaths by Date</h2>
-          <Line
-            data={this.getChartData()}
-            options={{
-              scales: {
-                yAxes: [
-                  {
-                    id: "left-axis",
-                    type: "logarithmic",
-                    position: "left",
-                    scaleLabel: {
-                      display: true,
-                      labelString: "Cases",
-                    },
-                    ticks: {
-                      callback: function (value, index, values) {
-                        return value.toLocaleString();
-                      },
-                    },
-                  },
-                  // {
-                  //   id: "right-axis",
-                  //   type: "logarithmic",
-                  //   position: "right",
-                  //   scaleLabel: {
-                  //     display: true,
-                  //     labelString: "Deaths",
-                  //   },
-                  //   ticks: {
-                  //     callback: function (value, index, values) {
-                  //       return value.toLocaleString();
-                  //     },
-                  //   },
-                  // },
-                ],
-              },
-            }}
-          ></Line>
+          <h2>{this.props.title}</h2>
+          <Chart data={this.getChartData()} options={options}></Chart>
         </div>
       </section>
     );

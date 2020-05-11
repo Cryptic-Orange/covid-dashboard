@@ -11,11 +11,11 @@ class Sidebar extends Component {
             </div>
 
             <div className="sidebar__footer">
-                <a href="https://github.com/Cryptic-Orange/covid-dashboard" target="_blank">
-                    <img src="/images/github.svg"></img>
+                <a href="https://github.com/Cryptic-Orange/covid-dashboard" target="_blank" rel="noopener noreferrer" >
+                    <img src="/images/github.svg" alt="GitHub Link"></img>
                 </a>
                 <a href="https://linkedin.com">
-                    <img src="/images/linkedin.svg"></img>
+                    <img src="/images/linkedin.svg" alt="LinkedIn Profile Link"></img>
                 </a>
             </div>
         </div> );

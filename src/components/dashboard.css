@@ -41,6 +41,11 @@ section.daily-cases {
   grid-row: header-start / header-end;
 }
 
+section.daily-rate{
+    grid-column: c2-start / c2-end;
+    grid-row: r2-start / r2-end;
+}
+
 .widget h2 {
   font-size: 1rem;
   font-weight: 100;
