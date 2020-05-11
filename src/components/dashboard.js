@@ -15,7 +15,7 @@ class Dashboard extends Component {
   //"https://c19downloads.azureedge.net/downloads/json/coronavirus-cases_latest.json"
   componentDidMount() {
     Promise.all([
-      fetch("/data/coronavirus-cases_latest.json"),
+      fetch("/data/coronavirus-cases-by-country_latest.json"),
       fetch("/data/coronavirus-deaths_latest.json"),
     ]).then((responses) => {
       Promise.all([responses[0].json(), responses[1].json()]).then((values) => {
