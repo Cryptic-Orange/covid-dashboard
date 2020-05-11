@@ -1,17 +1,5 @@
 import React, { Component } from "react";
-
-/*
-areaCode: "E92000001"
-areaName: "England"
-areaType: "Nation"
-changeInDailyCases: 63
-changeInTotalCases: 1349
-dailyLabConfirmedCases: 63
-previouslyReportedDailyCases: 0
-previouslyReportedTotalCases: 133626
-specimenDate: "2020-05-08"
-totalLabConfirmedCases: 134975
-*/
+import "./case-history.table.css";
 
 class CaseHistoryTable extends Component {
   state = {};

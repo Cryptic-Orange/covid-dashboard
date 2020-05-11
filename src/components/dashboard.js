@@ -4,6 +4,7 @@ import CaseHistoryTable from "./case-history.table";
 import CaseHistoryChart from "./case-history.chart";
 import Sidebar from "./sidebar";
 import Footer from "./footer";
+import "./dashboard.css";
 
 class Dashboard extends Component {
   constructor(props) {

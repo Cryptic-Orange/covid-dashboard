@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import "./daily-cases.css";
 
 class DailyCases extends Component {
   render() {

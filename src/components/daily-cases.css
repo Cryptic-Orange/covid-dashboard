@@ -1,0 +1,15 @@
+.data-points {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.data-point h2 {
+  font-size: 1rem;
+  font-weight: 100;
+  margin-top: 0;
+}
+
+.data-point__value {
+  font-size: 2rem;
+}
