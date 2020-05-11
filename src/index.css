@@ -11,3 +11,123 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  min-height: 100vh;
+  color: #fff;
+  font-family: "Josefin Sans";
+}
+
+.dashboard {
+  display: grid;
+  width: 100%;
+  height: 100vh;
+  background-color: #25294a;
+
+  grid-template-columns: [sidebar-start] 15% [sidebar-end c1-start] 1fr [c1-end c2-start] 1fr [c2-end];
+  grid-template-rows: [header-start] 0.5fr [header-end r1-start] 0.5fr [r1-end r2-start] 1fr [r2-end footer-start] 3rem [footer-end];
+
+  grid-template-areas:
+    "sidebar body body"
+    "sidebar body body"
+    "sidebar body body"
+    "sidebar footer footer";
+}
+
+.dashboard section {
+  padding: 1rem;
+}
+
+.dashboard section > * {
+  height: 100%;
+
+  padding: 0.5rem;
+  background-color: #2d325a;
+  box-shadow: 0 0 10px 5px rgba(0, 0, 0, 0.2);
+}
+
+section.tabular-history {
+  grid-column: c1-start / c1-end;
+  grid-row: r1-start / r2-end;
+}
+
+section.case-history {
+  grid-column: c2-start / c2-end;
+  grid-row: header-start / r1-end;
+}
+
+section.daily-cases {
+  grid-column: c1-start / c1-end;
+  grid-row: header-start / header-end;
+}
+
+.data-points {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.data-point h2 {
+  font-size: 1rem;
+  font-weight: 100;
+  margin-top: 0;
+}
+
+.data-point__value {
+  font-size: 2rem;
+}
+
+.tabular-history > div {
+  overflow-y: scroll;
+  height: 100%;
+}
+
+.tabular-history table {
+  width: 100%;
+}
+
+.tabular-history table tr {
+  height: 2rem;
+}
+
+.tabular-history table tr:nth-child(2n) {
+  background-color: #4d5274;
+}
+
+.tabular-history table td {
+  border-spacing: 0;
+  border: none;
+}
+
+.widget h2{
+    font-size: 1rem;
+    font-weight: 100;
+    margin-top: 0;
+}
+
+.sidebar {
+  background: #202442;
+  grid-area: sidebar;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 1.5rem 0;
+}
+
+.sidebar__footer img {
+  width: 32px;
+  margin: 0.5rem;
+}
+
+.sidebar__header img {
+  width: 40%;
+}
+
+footer {
+  grid-area: footer;
+  padding: 0.5rem;
+}

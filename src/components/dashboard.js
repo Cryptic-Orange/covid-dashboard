@@ -36,20 +36,13 @@ class Dashboard extends Component {
     return (
       <div class="dashboard">
         <Sidebar></Sidebar>
-
-        <section className="daily-cases">
-          <DailyCases data={this.state.data}></DailyCases>
-        </section>
-        <section className="tabular-history">
-          <CaseHistoryTable rows={this.state.data.countries}></CaseHistoryTable>
-        </section>
-        <section className="case-history">
-          <CaseHistoryChart
-            rows={this.state.data.countries}
-            deaths={this.state.deathsData.countries}
-          ></CaseHistoryChart>
-        </section>
-        <Footer data={this.state.data}></Footer>  
+        <DailyCases data={this.state.data}></DailyCases>
+        <CaseHistoryTable rows={this.state.data.countries}></CaseHistoryTable>
+        <CaseHistoryChart
+          rows={this.state.data.countries}
+          deaths={this.state.deathsData.countries}
+        ></CaseHistoryChart>
+        <Footer data={this.state.data}></Footer>
       </div>
     );
   }

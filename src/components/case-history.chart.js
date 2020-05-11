@@ -51,45 +51,48 @@ class CaseHistoryChart extends Component {
 
   render() {
     return (
-      <div>
-        <Line
-          data={this.getChartData()}
-          options={{
-            scales: {
-              yAxes: [
-                {
-                  id: "left-axis",
-                  type: "logarithmic",
-                  position: "left",
-                  scaleLabel: {
-                    display: true,
-                    labelString: "Cases",
-                  },
-                  ticks: {
-                    callback: function (value, index, values) {
+      <section className="widget case-history">
+        <div>
+            <h2>Total Cases/Deaths by Date</h2>
+          <Line
+            data={this.getChartData()}
+            options={{
+              scales: {
+                yAxes: [
+                  {
+                    id: "left-axis",
+                    type: "logarithmic",
+                    position: "left",
+                    scaleLabel: {
+                      display: true,
+                      labelString: "Cases",
+                    },
+                    ticks: {
+                      callback: function (value, index, values) {
                         return value.toLocaleString();
                       },
+                    },
                   },
-                },
-                // {
-                //   id: "right-axis",
-                //   type: "logarithmic",
-                //   position: "right",
-                //   scaleLabel: {
-                //     display: true,
-                //     labelString: "Deaths",
-                //   },
-                //   ticks: {
-                //     callback: function (value, index, values) {
-                //       return value.toLocaleString();
-                //     },
-                //   },
-                // },
-              ],
-            },
-          }}
-        ></Line>
-      </div>
+                  // {
+                  //   id: "right-axis",
+                  //   type: "logarithmic",
+                  //   position: "right",
+                  //   scaleLabel: {
+                  //     display: true,
+                  //     labelString: "Deaths",
+                  //   },
+                  //   ticks: {
+                  //     callback: function (value, index, values) {
+                  //       return value.toLocaleString();
+                  //     },
+                  //   },
+                  // },
+                ],
+              },
+            }}
+          ></Line>
+        </div>
+      </section>
     );
   }
 }
