@@ -16,6 +16,10 @@
   width: 40%;
 }
 
+.sidebar__header {
+    line-height: 3rem;
+}
+
 .sidebar__header p {
     padding:0 1rem;
     line-height: 1.5rem;
