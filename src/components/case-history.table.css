@@ -1,6 +1,11 @@
-.tabular-history > div {
+.tabular-history .table-container {
   overflow-y: scroll;
-  height: 100%;
+  flex-grow: 1;
+}
+
+.tabular-history > div {
+  display: flex;
+  flex-direction: column;
 }
 
 .tabular-history table {

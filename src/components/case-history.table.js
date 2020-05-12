@@ -51,7 +51,8 @@ class CaseHistoryTable extends Component {
         <div>
           <h2>
             Total number of lab-confirmed cases in England by specimen date            
-          </h2>          
+          </h2>  
+          <div className="table-container">
           <table>
             <thead>
               <tr>
@@ -63,6 +64,7 @@ class CaseHistoryTable extends Component {
             </thead>
             <tbody>{this.renderRows(this.props.rows)}</tbody>
           </table>
+            </div>        
         </div>
       </section>
     );
