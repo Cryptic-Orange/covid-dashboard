@@ -4,15 +4,33 @@
   height: 100vh;
   background-color: #25294a;
 
-  grid-template-columns: [sidebar-start] 15% [sidebar-end c1-start] 1fr [c1-end c2-start] 1fr [c2-end];
+  grid-template-columns: [sidebar-start] 20ch [sidebar-end c1-start] 1fr [c1-end c2-start] 1fr [c2-end];
   grid-template-rows: [header-start] 1fr [header-end r1-start] 1fr [r1-end r2-start] 1fr [r2-end r2-start] 1fr [r3-end footer-start] 3rem [footer-end];
 
   grid-template-areas:
-    "sidebar body body"
-    "sidebar body body"
-    "sidebar body body"
-    "sidebar body body"
+    "sidebar block1 block3"
+    "sidebar block2 block3"
+    "sidebar block2 block4"
+    "sidebar block2 block4"
     "sidebar footer footer";
+}
+
+@media screen and (max-width: 768px){
+  .dashboard{
+    height:auto;
+    grid-template-rows: 5rem 10rem 20rem 20rem 20rem 2rem;
+    grid-template-columns: auto;
+
+    grid-template-areas:
+      "sidebar"
+      "block1"
+      "block2"
+      "block3"
+      "block4"
+      "footer"
+  }
+
+ 
 }
 
 .dashboard section {
@@ -27,23 +45,19 @@
 }
 
 section.tabular-history {
-  grid-column: c1-start / c1-end;
-  grid-row: r1-start / footer-start;
+  grid-area: block2;
 }
 
 section.daily-cases {
-  grid-column: c1-start / c1-end;
-  grid-row: header-start / header-end;
+  grid-area: block1;
 }
 
 section.case-history {
-    grid-column: c2-start / c2-end;
-    grid-row: header-start / r1-end;
+    grid-area: block3;
   }
 
 section.daily-rate{
-    grid-column: c2-start / c2-end;
-    grid-row: r2-start / footer-start;
+    grid-area:block4;
 }
 
 .widget h2 {
